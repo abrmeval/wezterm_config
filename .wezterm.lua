@@ -7,7 +7,7 @@ local STYLE = "bluered"
 
 config.launch_menu = {
   { label = "PowerShell", args = { "powershell.exe", "-NoLogo" } },
-  { label = "PowerShell 7", args = { "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.6.3.0_x64__8wekyb3d8bbwe\\pwsh.exe", "-NoLogo" } },
+  { label = "PowerShell 7", args = { "pwsh.exe", "-NoLogo" } },
   { label = "Command Prompt", args = { "cmd.exe" } },
 }
 
@@ -159,6 +159,22 @@ config.cursor_blink_rate = 500
 -- Scrollback / misc QoL
 config.scrollback_lines = 5000
 config.audible_bell = "Disabled"
+
+-- ============================================================
+-- PASTE — Ctrl+V and right-click paste from the clipboard.
+-- (Ctrl+Shift+V keeps working via WezTerm's defaults.)
+-- ============================================================
+config.keys = {
+  { key = "v", mods = "CTRL", action = wezterm.action.PasteFrom "Clipboard" },
+}
+
+config.mouse_bindings = {
+  {
+    event = { Down = { streak = 1, button = "Right" } },
+    mods = "NONE",
+    action = wezterm.action.PasteFrom "Clipboard",
+  },
+}
 
 
 -- Finally, return the configuration to wezterm:
